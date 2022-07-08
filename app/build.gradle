@@ -2,13 +2,17 @@ plugins {
     id 'kotlin-kapt'
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+
 }
 apply {
     from '../shared.gradle'
 }
 android {
     compileSdk 32
-
+    buildFeatures {
+        viewBinding = true
+        dataBinding = true
+    }
     defaultConfig {
         applicationId "com.darkshandev.restohunt"
         minSdk 24
