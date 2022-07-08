@@ -1,0 +1,11 @@
+dependencies{
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.13.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.13.1'
+
+    //hilt
+    implementation 'com.google.dagger:hilt-android:2.41'
+    kapt 'com.google.dagger:hilt-compiler:2.41'
+    kapt 'androidx.hilt:hilt-compiler:1.0.0'
+}
