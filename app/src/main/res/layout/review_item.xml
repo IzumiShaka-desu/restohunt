@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="review"
+            type="com.darkshandev.restohunt.core.domain.models.CustomerReview" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        xmlns:tools="http://schemas.android.com/tools">
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Asakura Yui"
+            android:text="@{review.name}"
+            style="@style/TextAppearance.AppCompat.Title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sentAt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            tools:text="13 November 2022"
+            android:text="@{review.date}"
+            style="@style/TextAppearance.AppCompat.Caption"
+            app:layout_constraintStart_toStartOf="@id/username"
+            app:layout_constraintTop_toBottomOf="@+id/username" />
+
+        <TextView
+            android:id="@+id/reviewTv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            style="@style/TextAppearance.AppCompat.Medium"
+            tools:text="Aaaaaaaa, Enak banget aku suka menu-menu disini tempatnya juga nyaman"
+            android:text="@{review.review}"
+            app:layout_constraintStart_toStartOf="@id/sentAt"
+            app:layout_constraintTop_toBottomOf="@+id/sentAt" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

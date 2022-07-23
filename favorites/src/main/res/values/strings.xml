@@ -1,0 +1,5 @@
+<resources>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello fav fragment</string>
+    <string name="fav_empty">you don\'t have any favorite restaurant</string>
+</resources>

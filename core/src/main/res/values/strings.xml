@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="cannot_get_restaurants">cannot fetch restaurant from server, please try again!</string>
+    <string name="cannot_get_restaurants_detail">cannot fetch detail restaurant from server, please try again!</string>
+    <string name="cannot_search_restaurant">cannot fetch search restaurant from server, please try again!</string>
+</resources>
