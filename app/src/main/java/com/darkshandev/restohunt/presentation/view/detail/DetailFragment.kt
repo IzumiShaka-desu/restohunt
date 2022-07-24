@@ -22,18 +22,16 @@ class DetailFragment : Fragment() {
     private val _viewModel by activityViewModels<RestaurantViewmodel>()
     private var _binding: FragmentDetailBinding? = null
     private val tabsTitle = listOf("about", "review")
-    private val tabsContent = listOf<Fragment>(AboutFragment(), ReviewFragment())
-    private lateinit var viewPagerAdapter: TabViewPagerAdapter
 
-    override fun onDestroy() {
+    private var viewPagerAdapter: TabViewPagerAdapter? = null
+
+    override fun onDestroyView() {
+        viewPagerAdapter=null
         _binding = null
-        super.onDestroy()
+        super.onDestroyView()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        _binding = FragmentDetailBinding.inflate(layoutInflater)
-        viewPagerAdapter =
-            TabViewPagerAdapter(tabsContent, fragmentManager = parentFragmentManager, lifecycle)
         super.onCreate(savedInstanceState)
         arguments?.getString("idRestaurant")?.let {
             _viewModel.setSelectedId(it)
@@ -44,6 +42,13 @@ class DetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        _binding = FragmentDetailBinding.inflate(layoutInflater)
+        viewPagerAdapter =
+            TabViewPagerAdapter(
+                listOf(AboutFragment(), ReviewFragment()),
+                fragmentManager = parentFragmentManager,
+                lifecycle
+            )
         _binding?.apply {
             vp.adapter = viewPagerAdapter
             vp.isUserInputEnabled = false
@@ -58,8 +63,18 @@ class DetailFragment : Fragment() {
             _viewModel.isFavorite.flowWithLifecycle(lifecycle).collect {
                 it?.let {
                     _binding?.apply {
-                        if (it) fabFav.setImageDrawable( AppCompatResources.getDrawable(requireContext(),R.drawable.ic_baseline_favorite_24))
-                        else fabFav.setImageDrawable( AppCompatResources.getDrawable(requireContext(),R.drawable.ic_baseline_favorite_border_24))
+                        if (it) fabFav.setImageDrawable(
+                            AppCompatResources.getDrawable(
+                                requireContext(),
+                                R.drawable.ic_baseline_favorite_24
+                            )
+                        )
+                        else fabFav.setImageDrawable(
+                            AppCompatResources.getDrawable(
+                                requireContext(),
+                                R.drawable.ic_baseline_favorite_border_24
+                            )
+                        )
                     }
 
                 }

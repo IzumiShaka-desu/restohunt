@@ -19,17 +19,12 @@ class ReviewFragment : Fragment() {
 
     private val _viewModel by activityViewModels<RestaurantViewmodel>()
     private var _binding: FragmentReviewBinding? = null
-    private val reviewAdapter = ReviewListViewAdapter()
+    private lateinit var reviewAdapter: ReviewListViewAdapter
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        _binding = FragmentReviewBinding.inflate(layoutInflater)
-        super.onCreate(savedInstanceState)
-
-    }
-
-    override fun onDestroy() {
+    override fun onDestroyView() {
+        _binding?.rvReview?.adapter = null
         _binding = null
-        super.onDestroy()
+        super.onDestroyView()
     }
 
 
@@ -37,6 +32,8 @@ class ReviewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        _binding = FragmentReviewBinding.inflate(layoutInflater)
+        reviewAdapter = ReviewListViewAdapter()
         _binding?.apply {
             rvReview.adapter = reviewAdapter
             rvReview.layoutManager = LinearLayoutManager(requireContext())

@@ -20,26 +20,22 @@ import kotlinx.coroutines.launch
 class AboutFragment : Fragment() {
     private val _viewModel by activityViewModels<RestaurantViewmodel>()
     private var _binding: FragmentAboutBinding? = null
-    override fun onCreate(savedInstanceState: Bundle?) {
-        _binding = FragmentAboutBinding.inflate(layoutInflater)
-        super.onCreate(savedInstanceState)
-
-    }
-
-    override fun onDestroy() {
+    override fun onDestroyView() {
+        _binding?.scrollView?.removeAllViews()
         _binding = null
-        super.onDestroy()
+        super.onDestroyView()
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        _binding = FragmentAboutBinding.inflate(layoutInflater)
         lifecycleScope.launch {
             _viewModel
                 .detailRestaurant
                 .flowWithLifecycle(lifecycle)
-                .collect { it ->
+                .collect {
                     when (it) {
                         is AppState.Error -> {
                         }
@@ -68,7 +64,10 @@ class AboutFragment : Fragment() {
                                     val chip = Chip(requireContext())
                                     chip.text = drink.name
                                     chip.chipIcon =
-                                        AppCompatResources.getDrawable(requireContext(),R.drawable.ic_baseline_restaurant_menu_24)
+                                        AppCompatResources.getDrawable(
+                                            requireContext(),
+                                            R.drawable.ic_baseline_restaurant_menu_24
+                                        )
                                     addView(chip)
                                 }
                             }
