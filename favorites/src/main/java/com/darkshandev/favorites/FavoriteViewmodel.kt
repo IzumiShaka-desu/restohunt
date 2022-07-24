@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.stateIn
 
-class FavoriteViewmodel(private val useCase: RestaurantUseCase) :
+class FavoriteViewmodel(useCase: RestaurantUseCase) :
     ViewModel() {
     val favRestaurant: StateFlow<List<Restaurant>> = useCase.getFavRestaurants()
         .stateIn(viewModelScope, SharingStarted.Lazily, emptyList())
