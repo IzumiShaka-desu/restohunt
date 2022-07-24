@@ -27,20 +27,18 @@ class HomeFragment : Fragment() {
         findNavController().navigate(R.id.action_homeFragment_to_detailFragment, args = bundle)
     }
 
-    override fun onDestroy() {
+    override fun onDestroyView() {
+        _binding?.rvResto?.adapter=null
         _binding = null
-        super.onDestroy()
+        super.onDestroyView()
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        _binding = FragmentHomeBinding.inflate(layoutInflater)
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        _binding = FragmentHomeBinding.inflate(layoutInflater)
         _binding?.apply {
             rvResto.apply {
                 adapter = adapterM
