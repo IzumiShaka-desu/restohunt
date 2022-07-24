@@ -27,21 +27,19 @@ class SearchFragment : Fragment() {
         findNavController().navigate(R.id.action_searchFragment_to_detailFragment, args = bundle)
     }
     private val _viewmodel by activityViewModels<RestaurantViewmodel>()
-    override fun onDestroy() {
+    override fun onDestroyView() {
+        _binding?.rvSearchUser?.adapter = null
         _binding = null
         super.onDestroy()
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        _binding = FragmentSearchBinding.inflate(layoutInflater)
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        _binding = FragmentSearchBinding.inflate(layoutInflater)
         setupUi()
         setupOberver()
         return _binding?.root
@@ -68,7 +66,7 @@ class SearchFragment : Fragment() {
                         is AppState.Initial -> {
                             _binding?.apply {
                                 errorSearchTv.text =
-                                    "type food or restaurant name to explore best restaurant"
+                                    requireContext().getString(R.string.initial_Search_message)
                                 loadingSearch.visibility = View.GONE
                                 loadingSearch.pauseAnimation()
                                 rvSearchUser.visibility = View.GONE
@@ -92,7 +90,8 @@ class SearchFragment : Fragment() {
                                 val newList = result.data ?: emptyList()
                                 if (newList.isEmpty()) {
                                     rvSearchUser.visibility = View.GONE
-                                    errorSearchTv.text = "Cannot find any user you want"
+                                    errorSearchTv.text =
+                                        requireContext().getString(R.string.cannot_find_restaurant)
                                     errorSearchTv.text = result.message
                                     loadingSearch.visibility = View.GONE
                                     loadingSearch.pauseAnimation()
