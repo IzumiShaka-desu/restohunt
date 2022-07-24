@@ -1,14 +1,26 @@
-package com.darkshandev.restohunt.utils
+package com.darkshandev.favorites.utils
 
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.Drawable
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
+import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestBuilder
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.darkshandev.restohunt.R
+
+@BindingAdapter(value = ["resname", "isExpand"], requireAll = false)
+fun loadImageDrawable(view: ImageView, name: String?, isExpand: Boolean?) {
+    name?.let {
+        val isExpanded = isExpand ?: false
+        view.loadImage(
+            if (isExpanded) "https://restaurant-api.dicoding.dev/images/large/$it" else "https://restaurant-api.dicoding.dev/images/medium/$it",
+            isExpand = isExpanded
+        )
+    }
+}
 
 fun ImageView.loadImage(url: String, isExpand: Boolean = false) {
     val defaultOption = RequestOptions()
