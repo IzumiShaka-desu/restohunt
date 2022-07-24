@@ -10,4 +10,8 @@
     <string name="drinks">Drinks</string>
     <string name="favorite_button">favorite button</string>
     <string name="icon_location">icon location</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="initial_Search_message">type food or restaurant name to explore best restaurant</string>
+    <string name="cannot_find_restaurant">Cannot find any user you want</string>
 </resources>
