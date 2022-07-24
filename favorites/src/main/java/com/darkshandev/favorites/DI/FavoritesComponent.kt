@@ -1,4 +1,4 @@
-package com.artworkspace.favorite
+package com.darkshandev.favorites.DI
 
 import android.content.Context
 import com.darkshandev.favorites.FavoriteFragment
