@@ -6,6 +6,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -31,11 +32,18 @@ object NetworkModule {
     @Provides
     fun provideOkhttpClient(
         interceptor: HttpLoggingInterceptor,
-
-        ): OkHttpClient = OkHttpClient
-        .Builder()
-        .addInterceptor(interceptor)
-        .build()
+    ): OkHttpClient {
+        val apiHostname = "restaurant-api.dicoding.dev"
+        val certificatePinner = CertificatePinner.Builder()
+            .add(apiHostname, "sha256/MyLoM4XApbr2/XucsciH7wJwI2eufT37qUwBN4TU1Ho=")
+            .add(apiHostname, "sha256/XLzeq61PbPn+xZKu7+MwB4b8RCaFEhO7Bj/5EQbL3NQ=")
+            .build()
+        return OkHttpClient
+            .Builder()
+            .addInterceptor(interceptor)
+            .certificatePinner(certificatePinner)
+            .build()
+    }
 
 
     @Singleton
