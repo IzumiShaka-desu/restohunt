@@ -22,8 +22,6 @@ jobs:
         run: chmod +x gradlew
       - name: Unit tests
         run: bash ./gradlew test --stacktrace
-      - name: Generate Report
-        run: bash ./gradlew koverReport
       - name: Upload Report
         uses: actions/upload-artifact@v1
         with:
