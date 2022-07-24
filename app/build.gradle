@@ -27,9 +27,14 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+        debug {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -62,5 +67,7 @@ dependencies {
     implementation project(":core")
     //lottie animation
     implementation "com.airbnb.android:lottie:3.4.0"
+    //leakcanary
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.9.1'
 
 }
