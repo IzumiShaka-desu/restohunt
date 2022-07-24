@@ -1,5 +1,6 @@
 package com.darkshandev.restohunt.core.data
 
+import android.util.Log
 import com.darkshandev.restohunt.core.data.local.dao.RestaurantDao
 import com.darkshandev.restohunt.core.data.remote.datasources.RestaurantDatasources
 import com.darkshandev.restohunt.core.data.remote.request.AddReviewPost
@@ -42,18 +43,23 @@ class RestaurantRepository @Inject constructor(
 
     override fun getRestaurantDetailBy(id: String): Flow<AppState<DetailRestaurant>> =
         flow<AppState<DetailRestaurant>> {
-            emit(AppState.Loading())
-            val result = datasource.getDetailRestaurantBy(id)
-            result.onFailure {
-                emit(AppState.Error(it.message!!))
-            }.onSuccess {
-                if (it.error) {
-                    emit(AppState.Error(it.message))
-                } else {
-                    emit(AppState.Success(it.restaurant.asModel()))
-
+            try {
+                emit(AppState.Loading())
+                val result = datasource.getDetailRestaurantBy(id)
+                result.onFailure {
+                    emit(AppState.Error(it.message!!))
+                }.onSuccess {
+                    if (it.error) {
+                        emit(AppState.Error(it.message))
+                    } else {
+                        emit(AppState.Success(it.restaurant.asModel()))
+                    }
                 }
+            } catch (e: Exception) {
+                Log.e("fetch detail error:", e.message ?: e.toString())
+                emit(AppState.Error("please try again"))
             }
+
         }.flowOn(Dispatchers.IO)
 
     private val _query = MutableStateFlow("")
