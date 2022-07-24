@@ -20,6 +20,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
+import org.mockito.Mockito.lenient
 import org.mockito.junit.MockitoJUnitRunner
 
 @RunWith(MockitoJUnitRunner::class)
@@ -44,10 +45,9 @@ private lateinit var viewmodel: FavoriteViewmodel
  fun `verify favorites items`() {
   runTest {
    val dummyFavs = listOf<Restaurant>()
-   Mockito.`when`(useCase.getFavRestaurants())
+   lenient().`when`(useCase.getFavRestaurants())
     .thenReturn(flowOf(dummyFavs))
    assertEquals(dummyFavs.size,viewmodel.favRestaurant.value.size)
-
   }
  }
 }
