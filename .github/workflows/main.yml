@@ -22,11 +22,6 @@ jobs:
         run: chmod +x gradlew
       - name: Unit tests
         run: bash ./gradlew test --stacktrace
-      - name: Upload Report
-        uses: actions/upload-artifact@v1
-        with:
-          name: Kover Report
-          path: app/build/reports/kover/project-html
 
   build:
 
