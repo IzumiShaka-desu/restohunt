@@ -10,12 +10,10 @@ import com.darkshandev.restohunt.core.data.remote.response.restaurant.Restaurant
 import com.darkshandev.restohunt.core.data.remote.response.search.SearchResultResponse
 import dagger.hilt.android.qualifiers.ApplicationContext
 import retrofit2.Response
-import retrofit2.Retrofit
 import javax.inject.Inject
 
 class RestaurantDatasources @Inject constructor(
     @ApplicationContext private val context: Context,
-    private val retrofit: Retrofit,
     private val service: RestaurantService
 ) {
 
