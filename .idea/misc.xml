@@ -4,7 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1109375" />
-        <entry key="app/src/main/res/layout/fragment_about.xml" value="0.31680773881499397" />
+        <entry key="app/src/main/res/layout/fragment_about.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_detail.xml" value="0.11778115501519756" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.11778115501519756" />
         <entry key="app/src/main/res/layout/fragment_review.xml" value="0.15625" />
@@ -12,6 +12,8 @@
         <entry key="app/src/main/res/layout/item_layout.xml" value="0.2691390991210938" />
         <entry key="app/src/main/res/layout/review_item.xml" value="0.3157536824544272" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.39450378417968757" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.106" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.106" />
         <entry key="favorite/src/main/res/layout/fragment_favorite.xml" value="0.1109375" />
         <entry key="favorites/src/main/res/layout/fav_item_layout.xml" value="0.15625" />
         <entry key="favorites/src/main/res/layout/fragment_favorite.xml" value="0.337694803873698" />
