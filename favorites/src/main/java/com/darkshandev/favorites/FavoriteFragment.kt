@@ -11,7 +11,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.artworkspace.favorite.DaggerFavoritesComponent
+import com.darkshandev.favorites.DI.DaggerFavoritesComponent
 import com.darkshandev.favorites.databinding.FragmentFavoriteBinding
 import com.darkshandev.restohunt.app.DI.FavoritesModuleDependecies
 import dagger.hilt.android.EntryPointAccessors
